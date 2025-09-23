@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    depends_on:
+      - rag
+      - ml
+      - agent
+    environment:
+      - RAG_URL=http://rag:8001
+      - ML_URL=http://ml:8002
+      - AGENT_URL=http://agent:8003
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    networks:
+      - thermal-net
+
+  ml:
+    build: ./ml
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./ml/models:/app/models
+    environment:
+      - CUDA_VISIBLE_DEVICES=0  # If GPU
+    networks:
+      - thermal-net
+
+  rag:
+    build: ./rag
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./vector_dbs:/app/vector_dbs
+    networks:
+      - thermal-net
+
+  agent:
+    build: ./agent
+    volumes:
+      - ./outputs:/app/outputs
+    depends_on:
+      - ml
+      - rag
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    networks:
+      - thermal-net
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "7860:7860"
+    depends_on:
+      - api
+    networks:
+      - thermal-net
+
+  # iot-broker:  # Optional for local MQTT; uncomment if needed
+  #   image: eclipse-mosquitto:2
+  #   ports:
+  #     - "1883:1883"
+  #   volumes:
+  #     - ./iot/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  #   networks:
+  #     - thermal-net
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - thermal-net
+
+networks:
+  thermal-net:
+    driver: bridge

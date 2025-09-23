@@ -1,0 +1,31 @@
+Equipment,Log_Type,Sample_Format,Frequency,Maintenance_Actions
+CNC Machine,ALLLOG.LOG,"Timestamp,ErrorCode,Description,Action
+2025-09-22 10:30:15,E001,Spindle overload,Auto-stop activated
+2025-09-22 11:45:22,W005,Tool wear warning,Tool change recommended",Continuous during operation,"Tool replacement, spindle maintenance, parameter adjustment"
+CNC Machine,NCSAMP.CSV,"Time,X_Position,Y_Position,Z_Position,Spindle_Speed,Feed_Rate
+10:30:15,125.340,89.750,15.200,3500,800
+10:30:16,125.345,89.755,15.205,3500,800",Real-time sampling,"Position accuracy calibration, spindle speed verification"
+TIG/MIG Welding Machine,Welding Parameter Log,"Date,WeldID,Current(A),Voltage(V),WireSpeed(m/min),GasFlow(L/min),ArcTime(s)
+2025-09-22,W001,180,22.5,8.5,15,45
+2025-09-22,W002,165,21.8,7.2,15,38",Per weld cycle,"Contact tip replacement, gas regulator calibration, wire feed adjustment"
+Forklift,Daily Inspection Log,"Date,OperatorID,BatteryLevel(%),TireCondition,HydraulicPressure(PSI),Issues
+2025-09-22,OP001,85,Good,2200,None
+2025-09-22,OP002,92,Wear_Front_Left,2180,Tire replacement needed",Daily pre-shift,"Battery charging, tire replacement, hydraulic system service"
+Hydraulic System,Fluid Analysis Log,"Date,FluidTemp(°C),Pressure(Bar),Viscosity(cSt),WaterContent(ppm),ParticleCount
+2025-09-22,65,210,46.2,150,ISO 18/16/13
+2025-09-21,63,208,47.1,145,ISO 18/16/13",Weekly monitoring,"Fluid replacement, filter change, system purging"
+Air Compressor,Performance Log,"Date,Runtime(hrs),DischargePressure(PSI),Temperature(°C),OilLevel,Vibration(mm/s)
+2025-09-22,145.5,125,85,Normal,2.1
+2025-09-21,144.2,126,82,Normal,2.0",Daily monitoring,"Oil change, belt adjustment, filter replacement"
+Conveyor System,Belt Inspection Log,"Date,BeltTension(N),BeltWear(mm),BearingTemp(°C),MotorCurrent(A),Vibration(Hz)
+2025-09-22,1850,0.5,45,12.3,59.8
+2025-09-21,1845,0.5,44,12.1,59.9",Weekly inspection,"Belt tensioning, bearing lubrication, motor maintenance"
+Powder Coating System,Gun Maintenance Log,"Date,GunID,kV_Setting,µA_Current,PowderUsed(kg),NozzleCondition,CleaningDone
+2025-09-22,G001,80,85,15.2,Good,Yes
+2025-09-22,G002,82,78,12.8,Wear,Nozzle_Replaced",Daily cleaning cycles,"Nozzle replacement, electrode cleaning, powder recovery system maintenance"
+Drying Oven,Temperature Profile Log,"Date,CycleID,SetTemp(°C),ActualTemp(°C),RampTime(min),HoldTime(min),EnergyUsed(kWh)
+2025-09-22,C001,180,179.5,15,120,8.5
+2025-09-22,C002,160,160.2,12,90,6.2",Per cycle,"Heating element inspection, temperature sensor calibration, insulation check"
+Adhesive Dispense System,Dispense Volume Log,"Date,PartID,DispenseVolume(ml),Pressure(Bar),Temperature(°C),CycleTime(s),Quality
+2025-09-22,P001,2.45,5.2,25,3.2,Pass
+2025-09-22,P002,2.48,5.1,25,3.1,Pass",Per dispense cycle,"Nozzle cleaning, pump calibration, pressure regulator adjustment"
